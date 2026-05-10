@@ -56,6 +56,7 @@ module "vmm" {
   source     = "../../modules/08-vm"
   vms        = var.vms
   nic_ids    = module.nicm.nic_ids
+  public_key = var.public_key
   depends_on = [module.nicm]
 
 }

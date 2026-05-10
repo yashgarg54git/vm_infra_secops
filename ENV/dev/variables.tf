@@ -79,3 +79,5 @@ variable "vms" {
 
 }
 
+variable "public_key" {}
+
