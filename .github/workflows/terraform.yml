@@ -3,3 +3,58 @@ on:
   push:
     branches: 
       - main
+  
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+    defaults:
+      run:
+        working-directory: ENV/dev
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform format check
+        run: terraform fmt -check
+
+      - name: Terraform validate
+        run: terraform validate
+
+        #setup tflint
+      - name: setup tflint
+        uses: terraform-linters/setup-tflint@v1
+        
+        #run tflint
+      - name: Run tflint
+        run:  |
+          tflint --init
+          tflint
+
+        # run checkov
+      - name: Run checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ENV/dev
+          
+      - name: Terraform plan
+        run: terraform plan -var-file="dev.tfvars"
+
+      - name: Terraform apply
+        run: terraform apply -var-file="dev.tfvars" -auto-approve
+      
