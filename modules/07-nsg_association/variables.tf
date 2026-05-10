@@ -14,6 +14,11 @@ variable "nsg_ids" {
   type = map(string)
 }
 
-variable "subnet_assocs" {}
+variable "subnet_assocs" {
+  type = map(object({
+    subnet_key = string
+    nsg_key    = string
+  }))
+}
 
 variable "subnet_ids" {}

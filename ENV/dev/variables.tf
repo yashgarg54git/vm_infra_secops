@@ -65,7 +65,12 @@ variable "assocs" {
 
 }
 
-variable "subnet_assocs" {}
+variable "subnet_assocs" {
+  type = map(object({
+    subnet_key = string
+    nsg_key    = string
+  }))
+}
 
 variable "vms" {
   type = map(object({
