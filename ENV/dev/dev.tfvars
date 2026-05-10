@@ -70,8 +70,8 @@ assocs = {
 
 vms = {
   vm1 = {
-    vm_name            = "dev-vm-1"
-    location           = "Central India"
+    vm_name             = "dev-vm-1"
+    location            = "Central India"
     resource_group_name = "dev-rg"
 
     nic_key        = "nic1"
