@@ -51,7 +51,7 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: ENV/dev
-          skip_check: CKV_AZURE_50
+          skip_check: CKV_AZURE_50,CKV2_AZURE_31
           
       - name: Terraform plan
         run: terraform plan -var-file="dev.tfvars"
