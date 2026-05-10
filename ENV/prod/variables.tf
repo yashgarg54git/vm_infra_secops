@@ -73,7 +73,6 @@ variable "vms" {
       nic_key = string
       vm_size = string
       admin_username = string
-      admin_password = string
     }))
   
 }

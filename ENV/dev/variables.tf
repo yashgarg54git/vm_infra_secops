@@ -65,6 +65,8 @@ variable "assocs" {
 
 }
 
+variable "subnet_assocs" {}
+
 variable "vms" {
   type = map(object({
     vm_name             = string
@@ -73,7 +75,6 @@ variable "vms" {
     nic_key             = string
     vm_size             = string
     admin_username      = string
-    admin_password      = string
   }))
 
 }

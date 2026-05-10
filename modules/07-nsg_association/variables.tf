@@ -13,3 +13,7 @@ variable "nic_ids" {
 variable "nsg_ids" {
   type = map(string)
 }
+
+variable "subnet_assocs" {}
+
+variable "subnet_ids" {}

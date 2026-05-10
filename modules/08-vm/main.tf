@@ -6,9 +6,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = each.value.resource_group_name
   size                = each.value.vm_size
   admin_username      = each.value.admin_username
-  admin_password      = each.value.admin_password
+  
 
-  disable_password_authentication = false
+  disable_password_authentication = true
+  admin_ssh_key {
+    username   = each.value.admin_username
+    public_key = file("C:/Users/yashg/.ssh/id_rsa.pub")
+  }
 
   network_interface_ids = [
     var.nic_ids[each.value.nic_key]

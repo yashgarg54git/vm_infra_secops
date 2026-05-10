@@ -41,11 +41,14 @@ module "nsgm" {
 }
 
 module "nsg_nic" {
-  source     = "../../modules/07-nsg_association"
-  assocs     = var.assocs
-  nic_ids    = module.nicm.nic_ids
-  nsg_ids    = module.nsgm.nsg_ids
-  depends_on = [module.nicm, module.nsgm]
+  source        = "../../modules/07-nsg_association"
+  assocs        = var.assocs
+  nic_ids       = module.nicm.nic_ids
+  nsg_ids       = module.nsgm.nsg_ids
+  subnet_assocs = var.subnet_assocs
+
+  subnet_ids = module.snetm.subnet_ids
+  depends_on = [module.nicm, module.nsgm, module.snetm]
 
 }
 

@@ -68,6 +68,15 @@ assocs = {
   }
 }
 
+subnet_assocs = {
+
+  assoc1 = {
+    subnet_key = "subnet1"
+    nsg_key    = "nsg1"
+  }
+
+}
+
 vms = {
   vm1 = {
     vm_name             = "dev-vm-1"
@@ -77,6 +86,5 @@ vms = {
     nic_key        = "nic1"
     vm_size        = "Standard_D2s_v3"
     admin_username = "azureyashuser"
-    admin_password = "Password@1234"
   }
 }
